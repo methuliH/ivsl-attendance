@@ -109,18 +109,18 @@ const styles = StyleSheet.create({
   },
   inputFocused: {
     backgroundColor: Colors.white,
-    borderColor: Colors.burgundy,
+    borderColor: '#C9C8C4',
   },
   button: {
-    backgroundColor: Colors.burgundy,
+    backgroundColor: '#1A1918',
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 14,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(117,22,45,1)',
+        shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.30,
+        shadowOpacity: 0.12,
         shadowRadius: 6,
       },
       android: { elevation: 4 },
@@ -132,6 +132,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: 'DMSans_700Bold',
     fontSize: 13,
-    color: Colors.beige,
+    color: '#FFFFFF',
   },
 });

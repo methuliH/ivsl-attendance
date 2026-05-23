@@ -24,7 +24,11 @@ export default function EventCard({ event }: EventCardProps) {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Text style={styles.eyebrow}>ACTIVE EVENT · CPD PROGRAMME</Text>
+        <View style={styles.eyebrowRow}>
+          <Text style={styles.eyebrow}>ACTIVE EVENT</Text>
+          <View style={styles.eyebrowDot} />
+          <Text style={styles.eyebrow}>CPD PROGRAMME</Text>
+        </View>
         <Text style={styles.title} numberOfLines={3}>{event.event_title}</Text>
         <View style={styles.badgePill}>
           <Text style={styles.badgeText}>{event.event_type} · {event.event_status}</Text>
@@ -76,6 +80,17 @@ const styles = StyleSheet.create({
     paddingTop: 18,
     paddingBottom: 16,
     gap: 8,
+  },
+  eyebrowRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  eyebrowDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: Colors.burgundy,
   },
   eyebrow: {
     fontFamily: 'DMSans_700Bold',

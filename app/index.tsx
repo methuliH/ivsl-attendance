@@ -10,6 +10,7 @@ import {
   Animated,
   ActivityIndicator,
   ScrollView,
+  Image,
 } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -17,7 +18,6 @@ import * as Haptics from 'expo-haptics';
 import { useAuth } from './_layout';
 import { login as apiLogin } from '../constants/api';
 import { Colors } from '../constants/colors';
-import Monogram from '../components/Monogram';
 
 export default function LoginScreen() {
   const { token, login } = useAuth();
@@ -86,12 +86,12 @@ export default function LoginScreen() {
 
   const emailBorderColor = emailUnderline.interpolate({
     inputRange: [0, 1],
-    outputRange: [Colors.borderStrong, Colors.burgundy],
+    outputRange: [Colors.borderStrong, '#C9C8C4'],
   });
 
   const passwordBorderColor = passwordUnderline.interpolate({
     inputRange: [0, 1],
-    outputRange: [Colors.borderStrong, Colors.burgundy],
+    outputRange: [Colors.borderStrong, '#C9C8C4'],
   });
 
   return (
@@ -112,9 +112,11 @@ export default function LoginScreen() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <Monogram size={80} fontSize={28} />
-          <Text style={styles.orgName}>INSTITUTE OF VALUERS OF SRI LANKA</Text>
-          <Text style={styles.appTitle}>Event Attendance</Text>
+          <Image
+            source={require('../assets/logo_ivsl.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          />
           <Text style={styles.subtitle}>Authorised personnel only</Text>
         </View>
 
@@ -225,21 +227,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 44,
   },
-  orgName: {
-    fontFamily: 'DMSans_700Bold',
-    fontSize: 9,
-    color: Colors.burgundy,
-    letterSpacing: 1.8,
-    textTransform: 'uppercase',
-    textAlign: 'center',
-    marginTop: 16,
-  },
-  appTitle: {
-    fontFamily: 'CormorantGaramond_600SemiBold',
-    fontSize: 32,
-    color: Colors.wine,
-    letterSpacing: -0.3,
-    marginTop: 6,
+  logo: {
+    width: 200,
+    height: 80,
+    marginBottom: 24,
   },
   subtitle: {
     fontFamily: 'DMSans_400Regular',
@@ -256,7 +247,7 @@ const styles = StyleSheet.create({
   fieldLabel: {
     fontFamily: 'DMSans_700Bold',
     fontSize: 10,
-    color: Colors.burgundy,
+    color: '#1A1918',
     textTransform: 'uppercase',
     letterSpacing: 1.4,
   },
@@ -273,8 +264,8 @@ const styles = StyleSheet.create({
   },
   errorBanner: {
     borderLeftWidth: 2,
-    borderLeftColor: Colors.burgundy,
-    backgroundColor: 'rgba(117,22,45,0.07)',
+    borderLeftColor: '#1A1918',
+    backgroundColor: 'rgba(0,0,0,0.05)',
     paddingVertical: 10,
     paddingHorizontal: 12,
     borderRadius: 4,
@@ -286,7 +277,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   signInButton: {
-    backgroundColor: Colors.burgundy,
+    backgroundColor: '#1A1918',
     height: 52,
     borderRadius: 10,
     alignItems: 'center',
@@ -294,9 +285,9 @@ const styles = StyleSheet.create({
     marginTop: 4,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(117,22,45,1)',
+        shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.30,
+        shadowOpacity: 0.15,
         shadowRadius: 12,
       },
       android: { elevation: 6 },
@@ -308,7 +299,7 @@ const styles = StyleSheet.create({
   signInButtonText: {
     fontFamily: 'DMSans_700Bold',
     fontSize: 15,
-    color: Colors.beige,
+    color: '#FFFFFF',
     letterSpacing: 0.2,
   },
   loadingRow: {

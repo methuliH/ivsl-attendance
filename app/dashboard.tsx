@@ -20,6 +20,7 @@ import EventCard from '../components/EventCard';
 import QRScanner from '../components/QRScanner';
 import ManualEntry from '../components/ManualEntry';
 import ResultCard, { ErrorCard } from '../components/ResultCard';
+import AttendeeList from '../components/AttendeeList';
 import { useAttendance } from '../hooks/useAttendance';
 
 type ActiveTab = 'qr' | 'manual';
@@ -32,7 +33,7 @@ export default function DashboardScreen() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('qr');
 
   const scrollViewRef = useRef<ScrollView>(null);
-  const { loading, result, error, processAttendance, clearResult } = useAttendance(token ?? '');
+  const { loading, result, error, attendees, processAttendance, clearResult } = useAttendance(token ?? '');
 
   const employeeName = employee
     ? `${employee.employee_firstname} ${employee.employee_lastname}`
@@ -101,7 +102,7 @@ export default function DashboardScreen() {
 
   return (
     <View style={styles.root}>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <TopBar employeeName={employeeName} onSignOut={handleSignOut} />
 
       <ScrollView
@@ -114,7 +115,7 @@ export default function DashboardScreen() {
         {/* Event card */}
         {eventLoading ? (
           <View style={styles.eventLoadingWrap}>
-            <ActivityIndicator color={Colors.burgundy} />
+            <ActivityIndicator color="#1A1918" />
           </View>
         ) : eventError ? (
           <View style={styles.eventErrorWrap}>
@@ -155,7 +156,7 @@ export default function DashboardScreen() {
         {/* Processing indicator */}
         {loading ? (
           <View style={styles.processingRow}>
-            <ActivityIndicator size="small" color={Colors.burgundy} />
+            <ActivityIndicator size="small" color="#1A1918" />
             <Text style={styles.processingText}>Processing member…</Text>
           </View>
         ) : null}
@@ -163,6 +164,9 @@ export default function DashboardScreen() {
         {/* Result card */}
         {!loading && result ? <ResultCard result={result} /> : null}
         {!loading && error ? <ErrorCard message={error} /> : null}
+
+        {/* Attendee count + list */}
+        <AttendeeList attendees={attendees} />
 
         <View style={styles.bottomSpacer} />
       </ScrollView>
@@ -184,7 +188,7 @@ function TabButton({ label, icon, active, onPress }: TabButtonProps) {
       onPress={onPress}
       activeOpacity={0.8}
     >
-      <Ionicons name={icon} size={15} color={active ? Colors.beige : 'rgba(86,11,24,0.50)'} />
+      <Ionicons name={icon} size={15} color={active ? '#1A1918' : 'rgba(86,11,24,0.50)'} />
       <Text style={[styles.tabLabel, active && styles.tabLabelActive]}>{label}</Text>
     </TouchableOpacity>
   );
@@ -226,7 +230,7 @@ const styles = StyleSheet.create({
     lineHeight: 19,
   },
   retryBtn: {
-    backgroundColor: Colors.burgundy,
+    backgroundColor: '#1A1918',
     paddingHorizontal: 18,
     paddingVertical: 9,
     borderRadius: 8,
@@ -234,7 +238,7 @@ const styles = StyleSheet.create({
   retryText: {
     fontFamily: 'DMSans_700Bold',
     fontSize: 13,
-    color: Colors.beige,
+    color: '#FFFFFF',
   },
   tabBar: {
     flexDirection: 'row',
@@ -256,12 +260,9 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   tabActive: {
-    backgroundColor: Colors.burgundy,
-    shadowColor: 'rgba(117,22,45,1)',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
-    elevation: 3,
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#C9C8C4',
   },
   tabLabel: {
     fontFamily: 'DMSans_700Bold',
@@ -269,7 +270,7 @@ const styles = StyleSheet.create({
     color: 'rgba(86,11,24,0.50)',
   },
   tabLabelActive: {
-    color: Colors.beige,
+    color: '#1A1918',
   },
   scannerWrap: {
     marginHorizontal: 20,

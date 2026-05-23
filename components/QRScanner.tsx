@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   },
   permBtn: {
     marginTop: 12,
-    backgroundColor: Colors.burgundy,
+    backgroundColor: '#1A1918',
     paddingHorizontal: 18,
     paddingVertical: 9,
     borderRadius: 8,
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   permBtnText: {
     fontFamily: 'DMSans_700Bold',
     fontSize: 13,
-    color: Colors.beige,
+    color: '#FFFFFF',
   },
   cameraContainer: {
     width: CAMERA_SIZE,

@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "scheme": "ivsl-attendance",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo_ivsl.png",
       "resizeMode": "contain",
       "backgroundColor": "#F2E5C6"
     },
@@ -24,7 +24,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F2E5C6"
       },
-      "permissions": ["android.permission.CAMERA"],
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
       "package": "lk.ivsl.attendance"
     },
     "web": {
@@ -38,6 +41,12 @@
           "cameraPermission": "Allow IVSL Attendance to access your camera to scan member QR codes."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d828feb7-a0c5-441a-aa72-041914d35d22"
+      }
+    }
   }
 }
