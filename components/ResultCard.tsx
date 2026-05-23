@@ -27,14 +27,17 @@ function getStatusBg(remarks: string): string {
   }
 }
 
-function getInitials(name: string | null | undefined): string {
-  if (!name) return '?';
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0].toUpperCase())
-    .join('');
+function getInitials(name: string | null | undefined, idnumber?: number): string {
+  if (name) {
+    return name
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((w) => w[0].toUpperCase())
+      .join('');
+  }
+  if (idnumber) return String(idnumber).slice(-2);
+  return '?';
 }
 
 function formatDateTime(dateStr: string | null): string {
@@ -102,7 +105,7 @@ export default function ResultCard({ result }: ResultCardProps) {
 
   const accent = getStatusAccent(result.em_remarks);
   const statusBg = getStatusBg(result.em_remarks);
-  const initials = getInitials(result.member_name);
+  const initials = getInitials(result.member_name, result.member_idnumber);
 
   return (
     <Animated.View
@@ -119,7 +122,9 @@ export default function ResultCard({ result }: ResultCardProps) {
               <Text style={styles.avatarText}>{initials}</Text>
             </View>
             <View style={styles.memberInfo}>
-              <Text style={styles.memberName} numberOfLines={2}>{result.member_name ?? '—'}</Text>
+              <Text style={styles.memberName} numberOfLines={2}>
+                {result.member_name || `Member #${result.member_idnumber}`}
+              </Text>
               <Text style={styles.memberId}>IVSL #{result.member_idnumber}</Text>
             </View>
           </View>

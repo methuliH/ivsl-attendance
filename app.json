@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "IVSL Attendance",
+    "name": "IVSL CPD Event Attendance",
     "slug": "ivsl-attendance",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_ivsl.png",
     "userInterfaceStyle": "light",
     "scheme": "ivsl-attendance",
     "splash": {
       "image": "./assets/logo_ivsl.png",
       "resizeMode": "contain",
-      "backgroundColor": "#F2E5C6"
+      "backgroundColor": "#FFFFFF"
     },
     "ios": {
       "supportsTablet": false,
@@ -21,8 +21,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#F2E5C6"
+        "foregroundImage": "./assets/logo_ivsl.png",
+        "backgroundColor": "#FFFFFF"
       },
       "permissions": [
         "android.permission.CAMERA",

@@ -25,6 +25,7 @@ export interface Event {
   event_cpds: number;
   event_type: string;
   event_status: string;
+  event_participants_count: number;
 }
 
 export interface EventResponse {

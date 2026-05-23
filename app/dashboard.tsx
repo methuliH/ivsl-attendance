@@ -20,7 +20,6 @@ import EventCard from '../components/EventCard';
 import QRScanner from '../components/QRScanner';
 import ManualEntry from '../components/ManualEntry';
 import ResultCard, { ErrorCard } from '../components/ResultCard';
-import AttendeeList from '../components/AttendeeList';
 import { useAttendance } from '../hooks/useAttendance';
 
 type ActiveTab = 'qr' | 'manual';
@@ -164,9 +163,6 @@ export default function DashboardScreen() {
         {/* Result card */}
         {!loading && result ? <ResultCard result={result} /> : null}
         {!loading && error ? <ErrorCard message={error} /> : null}
-
-        {/* Attendee count + list */}
-        <AttendeeList attendees={attendees} />
 
         <View style={styles.bottomSpacer} />
       </ScrollView>

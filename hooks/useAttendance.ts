@@ -23,12 +23,27 @@ export function useAttendance(token: string) {
       try {
         const response = await markAttendance(token, params);
         if (response.response_code === 200 && response.data?.EventMember) {
-          const member = response.data.EventMember;
+          let member = response.data.EventMember;
+
+          // API omits member_name on first CHECK IN SUCCESS.
+          // Wait briefly, then re-query — the follow-up returns ALREADY CHECKED IN
+          // with the name populated. Merge it in while keeping the original em_remarks.
+          if (!member.member_name) {
+            await new Promise(resolve => setTimeout(resolve, 400));
+            try {
+              const followUp = await markAttendance(token, params);
+              if (followUp.data?.EventMember?.member_name) {
+                member = { ...member, member_name: followUp.data.EventMember.member_name };
+              }
+            } catch {
+              // ignore — proceed with null name rather than crashing
+            }
+          }
+
           setState(prev => ({
             loading: false,
             result: member,
             error: null,
-            // Upsert: move updated member to front, remove old entry if exists
             attendees: [
               member,
               ...prev.attendees.filter(

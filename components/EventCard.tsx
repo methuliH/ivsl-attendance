@@ -38,6 +38,9 @@ export default function EventCard({ event }: EventCardProps) {
         <StatChip label="DATE" value={formatDate(event.event_start)} />
         <StatChip label="TIME" value={formatTimeRange(event.event_start, event.event_end)} />
         <StatChip label="CPD POINTS" value={String(event.event_cpds)} isCpd />
+        {event.event_participants_count != null && (
+          <StatChip label="REGISTERED" value={String(event.event_participants_count)} />
+        )}
         <StatChip label="EVENT ID" value={`#${event.event_id}`} />
       </View>
     </View>

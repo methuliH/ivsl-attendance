@@ -157,10 +157,6 @@ export default function QRScanner({ onScan, disabled }: QRScannerProps) {
         />
       </View>
 
-      {/* Bottom hint */}
-      <View style={styles.hintWrap}>
-        <Text style={styles.hintText}>Align QR code within the frame</Text>
-      </View>
     </Animated.View>
   );
 }
@@ -268,19 +264,5 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: Colors.sand,
     opacity: 0.75,
-  },
-  hintWrap: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingBottom: 18,
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-  },
-  hintText: {
-    fontFamily: 'DMSans_400Regular',
-    fontSize: 11,
-    color: 'rgba(242,229,198,0.70)',
   },
 });
