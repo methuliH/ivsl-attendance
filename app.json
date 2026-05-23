@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "IVSL Attendance",
+    "slug": "ivsl-attendance",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "ivsl-attendance",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F2E5C6"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "lk.ivsl.attendance",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan member QR codes for CPD event attendance."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F2E5C6"
+      },
+      "permissions": ["android.permission.CAMERA"],
+      "package": "lk.ivsl.attendance"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow IVSL Attendance to access your camera to scan member QR codes."
+        }
+      ]
+    ]
+  }
+}

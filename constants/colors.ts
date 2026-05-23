@@ -1,0 +1,17 @@
+export const Colors = {
+  beige:        '#F2E5C6',
+  sand:         '#F2D9A0',
+  burgundy:     '#75162D',
+  maroon:       '#560B18',
+  wine:         '#3B010B',
+  white:        '#FFFDF8',
+  border:       'rgba(117,22,45,0.15)',
+  borderStrong: 'rgba(117,22,45,0.28)',
+  ok:           '#4A7C59',
+  okDim:        'rgba(74,124,89,0.12)',
+  warn:         '#9E7B00',
+  warnDim:      'rgba(158,123,0,0.10)',
+  textPrimary:  '#3B010B',
+  textSecondary:'#75162D',
+  textMuted:    'rgba(86,11,24,0.45)',
+} as const;
